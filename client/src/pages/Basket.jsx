@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import {deleteBasket} from "../http/BasketApi";
@@ -20,6 +20,14 @@ const Basket = observer(() => {
 
     }, []);
 
+    const totalPrice = () => {
+        let total = 0;
+        basket.basketContent.forEach((i) => {
+            const d = getDeviceById(i.deviceId);
+            total += d.price;
+        })
+        return total;
+    };
 
     const deleteDevice = (id) => {
         return () => {
@@ -39,9 +47,10 @@ const Basket = observer(() => {
             <span style={{fontSize: 36, letterSpacing: 3}}>Корзина:</span>
             {basket.basketContent.map((i) => {
                 const d = getDeviceById(i.deviceId);
-                return <DeviceItem replaceFunction={deleteDevice(i.id)} replace={true} key={i.id} device={d} brandList={device.brands}/>;
+                return <DeviceItem replaceFunction={deleteDevice(i.id)} replace={true} key={i.id} device={d}
+                                   brandList={device.brands}/>;
             })}
-            <span style={{fontSize: 36, letterSpacing: 3}}>Итого:</span>
+            <span style={{fontSize: 36, letterSpacing: 3}}>Итого: {totalPrice()} руб.</span>
         </div>
     );
 });
