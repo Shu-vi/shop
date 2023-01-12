@@ -50,7 +50,13 @@ const Basket = observer(() => {
                 return <DeviceItem replaceFunction={deleteDevice(i.id)} replace={true} key={i.id} device={d}
                                    brandList={device.brands}/>;
             })}
-            <span style={{fontSize: 36, letterSpacing: 3}}>Итого: {totalPrice()} руб.</span>
+            {
+                basket.basketContent.length > 0 ?
+                    <span style={{fontSize: 36, letterSpacing: 3}}>Итого: {totalPrice()} руб.</span>
+                    :
+                    <span style={{fontSize: 36, letterSpacing: 3}}>Корзина пуста</span>
+            }
+
         </div>
     );
 });
