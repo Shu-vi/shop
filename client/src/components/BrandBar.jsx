@@ -9,9 +9,16 @@ const BrandBar = observer(() => {
             {
                 device.brands.map((brand) => {
                     const notSelectedBrandStyles = {border: 'solid 1px #000', padding: '15px', cursor: 'pointer'};
-                    const selectedBrandStyles = {border: 'solid 1px #000', padding: '15px', backgroundColor: '#000', color: '#FFF', cursor: 'pointer'};
+                    const selectedBrandStyles = {
+                        border: 'solid 1px #000',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        color: '#FFF',
+                        cursor: 'pointer'
+                    };
                     const isSelected = brand.id === device.selectedBrand.id;
-                    return <div key={brand.id} style={isSelected? selectedBrandStyles:notSelectedBrandStyles} onClick={() => device.setSelectedBrand(brand)}>{brand.name}</div>
+                    return <div key={brand.id} style={isSelected ? selectedBrandStyles : notSelectedBrandStyles}
+                                onClick={() => device.setSelectedBrand(brand)}>{brand.name}</div>
                 })
             }
         </div>

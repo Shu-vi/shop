@@ -8,25 +8,27 @@ import {check} from "./http/UserApi";
 
 
 const App = observer(() => {
-    const {user} = useContext(Context);
+    const {user, basket} = useContext(Context);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        check().then(data => {
-            user.setUser(data)
-            user.setIsAuth(true)
-        }).finally(()=> setLoading(false))
+        check()
+            .then(data => {
+                user.setUser(data)
+                user.setIsAuth(true)
+            })
+            .finally(() => setLoading(false));
     }, []);
 
-    if (loading){
+    if (loading) {
         return <div></div>
     }
 
     return (
-    <BrowserRouter>
-        <NavBar/>
-      <AppRouter/>
-    </BrowserRouter>
+        <BrowserRouter>
+            <NavBar/>
+            <AppRouter/>
+        </BrowserRouter>
     );
 })
 

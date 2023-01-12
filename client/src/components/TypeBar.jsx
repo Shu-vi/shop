@@ -9,12 +9,22 @@ const TypeBar = observer(({children, ...props}) => {
             {
                 device.types.map((type) => {
                     const isSelected = type.id === device.selectedType.id;
-                    const selectedStyles = {border: '1px solid black', cursor: 'pointer', padding: '15px',
-                        textAlign: 'center', color: '#FFF', backgroundColor: '#000'};
-                    const notSelectedStyles = {border: '1px solid black', cursor: 'pointer', padding: '15px', textAlign: 'center'};
-                    return (<div key={type.name} style={isSelected? selectedStyles : notSelectedStyles} onClick={() => {device.setSelectedType(type)}}>
-                        {type.name}
-                    </div>)
+                    const selectedStyles = {
+                        border: '1px solid black', cursor: 'pointer', padding: '15px',
+                        textAlign: 'center', color: '#FFF', backgroundColor: '#000'
+                    };
+                    const notSelectedStyles = {
+                        border: '1px solid black',
+                        cursor: 'pointer',
+                        padding: '15px',
+                        textAlign: 'center'
+                    };
+                    return (
+                        <div key={type.name} style={isSelected ? selectedStyles : notSelectedStyles} onClick={() => {
+                            device.setSelectedType(type)
+                        }}>
+                            {type.name}
+                        </div>)
                 })
             }
         </div>
