@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import CreateBrand from "../components/modals/CreateBrand";
 import CreateType from "../components/modals/CreateType";
 import CreateDevice from "../components/modals/CreateDevice";
+import style from "../styles/pages/admin.module.css";
 
 const Admin = () => {
     const [brandHidden, setBrandHidden] = useState(true);
     const [typeHidden, setTypeHidden] = useState(true);
     const [deviceHidden, setDeviceHidden] = useState(true);
     return (
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div className={`${style.wrapper}`}>
             <button onClick={() => setTypeHidden(false)}>Добавить тип</button>
             <button onClick={() => setBrandHidden(false)}>Добавить бренд</button>
             <button onClick={() => setDeviceHidden(false)}>Добавить устройство</button>

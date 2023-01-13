@@ -3,6 +3,7 @@ import {Context} from "../../index";
 import Select from "../UI/Select";
 import {createDevice, fetchBrands, fetchTypes} from "../../http/DeviceApi";
 import {observer} from "mobx-react-lite";
+import style from "../../styles/components/modals/createDevice.module.css";
 
 const CreateDevice = observer(({hide, setHidden, ...props}) => {
     const {device} = useContext(Context);
@@ -49,30 +50,15 @@ const CreateDevice = observer(({hide, setHidden, ...props}) => {
     }
 
     return (
-        <div style={{
-            position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, zIndex: 5,
-            backgroundColor: 'rgba(0, 0, 0, .7)', display: 'flex', visibility: hide ? 'hidden' : null
-        }}>
-            <div style={{zIndex: 10, width: '40%', backgroundColor: '#FFF', margin: 'auto'}}>
-                <div style={{
-                    height: '20%',
-                    borderBottom: '2px solid black',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    padding: '10px 0'
-                }}>
+        <div className={`${style.wrapper}`}
+             style={{
+                 visibility: hide ? 'hidden' : null
+             }}>
+            <div className={`${style.modal}`}>
+                <div className={`${style.title}`}>
                     <h2>Создать устройство</h2>
                 </div>
-                <div style={{
-                    height: '70%',
-                    borderBottom: '2px solid black',
-                    display: 'flex',
-                    alignItems: 'start',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                    padding: '10px'
-                }}>
+                <div className={`${style.form}`}>
                     <Select defaultValue={"Выберите тип"}
                             options={device.types}
                             value={device.selectedType.id}
@@ -94,52 +80,37 @@ const CreateDevice = observer(({hide, setHidden, ...props}) => {
                             }}
                             margin={'0 0 10px 0'}/>
                     <input value={name} onChange={e => setName(e.target.value)} placeholder={'Название устройства'}
-                           style={{padding: '8px', width: '80%', height: '10%', marginBottom: 10}}/>
+                           className={`${style.input}`}/>
                     <input value={price} onChange={e => setPrice(Number(e.target.value))} type={'number'}
                            placeholder={'Цена устройства'}
-                           style={{padding: '8px', width: '80%', height: '10%', marginBottom: 10}}/>
-                    <input onChange={selectFile} type={'file'} style={{width: '80%', height: '20%', marginBottom: 10}}/>
-                    <hr style={{width: '100%', marginBottom: 10}}/>
-                    <button onClick={addInfo} style={{
-                        padding: '10px', backgroundColor: 'rgba(0, 0, 0, 0)',
-                        fontSize: '15px', border: 'solid 2px rgb(0, 0, 0)',
-                        borderRadius: '5px', cursor: 'pointer', marginBottom: 10
-                    }}>Добавить новое свойство
+                           className={`${style.input}`}/>
+                    <input onChange={selectFile} type={'file'} className={`${style.input}`}/>
+                    <hr className={`${style.hr}`}/>
+                    <button onClick={addInfo} className={`${style.button}`}>Добавить новое свойство
                     </button>
                     {info.map((info) => {
-                        return (<div key={info.number} style={{width: '100%'}}>
-                            <div style={{display: 'flex', width: '100%', alignItems: 'center', marginBottom: 10}}>
+                        return (<div key={info.number} className={`${style.width100}`}>
+                            <div className={`${style.wrapperInfos}`}>
                                 <input value={info.title}
                                        onChange={(e) => changeInfo('title', e.target.value, info.number)}
                                        placeholder={'Введите название'}
-                                       style={{padding: '8px', width: '80%', height: '100%', marginRight: 10}}/>
+                                       className={`${style.input2}`}/>
                                 <input value={info.description}
                                        onChange={(e) => changeInfo('description', e.target.value, info.number)}
                                        placeholder={'Введите описание'}
-                                       style={{padding: '8px', width: '80%', height: '100%', marginRight: 10}}/>
-                                <button onClick={() => removeInfo(info.number)} style={{
-                                    padding: '10px', backgroundColor: 'rgba(0, 0, 0, 0)',
-                                    color: 'rgb(150, 80, 50)', fontSize: '15px', border: 'solid 2px rgb(150, 80, 50)',
-                                    borderRadius: '5px', cursor: 'pointer'
-                                }}>Удалить
+                                       className={`${style.input2}`}/>
+                                <button onClick={() => removeInfo(info.number)}
+                                        className={`${style.buttonCancel}`}>Удалить
                                 </button>
                             </div>
                         </div>)
                     })}
                 </div>
-                <div style={{height: '10%', display: 'flex', alignItems: 'center', justifyContent: 'end', padding: 12}}>
+                <div className={`${style.buttonWrapper}`}>
                     <button onClick={addDevice}
-                            style={{
-                                padding: '10px', backgroundColor: 'rgba(0, 0, 0, 0)',
-                                color: 'rgb(80, 150, 50)', fontSize: '15px', border: 'solid 2px rgb(80, 150, 50)',
-                                borderRadius: '5px', cursor: 'pointer', marginRight: 12
-                            }}>Добавить
+                            className={`${style.buttonSuccess}`}>Добавить
                     </button>
-                    <button onClick={() => setHidden(true)} style={{
-                        padding: '10px', backgroundColor: 'rgba(0, 0, 0, 0)',
-                        color: 'rgb(150, 80, 50)', fontSize: '15px', border: 'solid 2px rgb(150, 80, 50)',
-                        borderRadius: '5px', cursor: 'pointer'
-                    }}>Закрыть
+                    <button onClick={() => setHidden(true)} className={`${style.buttonCancel}`}>Закрыть
                     </button>
                 </div>
             </div>

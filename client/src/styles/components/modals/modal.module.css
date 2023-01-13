@@ -1,0 +1,68 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, .7);
+    display: flex;
+}
+
+.modal {
+    z-index: 10;
+    width: 40%;
+    height: 50%;
+    background-color: #FFF;
+    margin: auto;
+}
+
+.title {
+    height: 20%;
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    height: 50%;
+    border-bottom: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input {
+    padding: 8px;
+    width: 80%;
+    height: 20%;
+}
+
+.buttonWrapper {
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.buttonSuccess {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(80, 150, 50);
+    font-size: 15px;
+    border: solid 2px rgb(80, 150, 50);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+.buttonCancel {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(150, 80, 50);
+    font-size: 15px;
+    border: solid 2px rgb(150, 80, 50);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 12px;
+}

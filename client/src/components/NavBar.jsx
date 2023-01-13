@@ -4,6 +4,7 @@ import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router-dom";
 import {ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE} from "../utils/consts";
 import {fetchBasket} from "../http/BasketApi";
+import style from "../styles/components/navBar.module.css";
 
 const NavBar = observer(() => {
     const {user, basket} = useContext(Context);
@@ -21,62 +22,40 @@ const NavBar = observer(() => {
     }
 
     return (
-        <div style={{
-            width: '100%', backgroundColor: '#252525', color: 'white', padding: '15px 20px',
-            justifyContent: 'space-between', display: 'flex', alignItems: 'center'
-        }}>
+        <div className={`${style.wrapper}`}>
             <div onClick={() => navigate(SHOP_ROUTE)}
-                 style={{textTransform: 'uppercase', fontSize: '20px', cursor: 'pointer'}}>
+                 className={`${style.logo}`}>
                 Интернет магазин
             </div>
-            <div>
-                {
-                    user.isAuth
-                        ?
-                        <>
-                            <button
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    navigate(ADMIN_ROUTE, {replace: true})
-                                }}
-                                style={{
-                                    backgroundColor: 'rgba(0, 0, 0, 0)', border: 'solid 1px #EEE',
-                                    fontSize: '20px', borderRadius: '5px', padding: '10px 5px',
-                                    color: '#EEE', cursor: 'pointer'
-                                }}>Админ панель
-                            </button>
-                            <button
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    navigate(BASKET_ROUTE, {replace: true})
-                                }}
-                                style={{
-                                    backgroundColor: 'rgba(0, 0, 0, 0)', border: 'solid 1px #EEE',
-                                    fontSize: '20px', borderRadius: '5px', padding: '10px 5px',
-                                    color: '#EEE', cursor: 'pointer', marginLeft: 10
-                                }}>Корзина {basket.basketContent.length}
-                            </button>
-                            <button onClick={logOut}
-                                    style={{
-                                        marginLeft: '10px', backgroundColor: 'rgba(0, 0, 0, 0)',
-                                        border: 'solid 1px #EEE', fontSize: '20px', borderRadius: '5px',
-                                        padding: '10px 5px', color: '#EEE', cursor: 'pointer'
-                                    }}>
-                                Выйти
-                            </button>
-                        </>
-                        :
+            {
+                user.isAuth
+                    ?
+                    <div>
                         <button
-                            style={{
-                                marginLeft: '10px', backgroundColor: 'rgba(0, 0, 0, 0)',
-                                border: 'solid 1px #EEE', fontSize: '20px', borderRadius: '5px',
-                                padding: '10px 5px', color: '#EEE', cursor: 'pointer'
+                            onClick={(e) => {
+                                e.preventDefault();
+                                navigate(ADMIN_ROUTE, {replace: true})
                             }}
-                            onClick={() => navigate(LOGIN_ROUTE)}>
-                            Авторизация</button>
-                }
-
-            </div>
+                            className={`${style.button}`}>Админ панель
+                        </button>
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                navigate(BASKET_ROUTE, {replace: true})
+                            }}
+                            className={`${style.button}`}>Корзина {basket.basketContent.length}
+                        </button>
+                        <button onClick={logOut}
+                                className={`${style.button}`}>
+                            Выйти
+                        </button>
+                    </div>
+                    :
+                    <button
+                        className={`${style.button}`}
+                        onClick={() => navigate(LOGIN_ROUTE)}>
+                        Авторизация</button>
+            }
         </div>
     );
 });

@@ -1,5 +1,7 @@
 # images
 static/*
+#ide
+../.idea
 
 ### dotenv ###
 .env

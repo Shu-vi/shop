@@ -1,0 +1,44 @@
+.wrapper {
+    width: 170px;
+    cursor: pointer;
+    border: solid 1px black;
+    padding: 10px;
+    margin-right: calc((100% - 4 * 170px) / 3);
+    margin-bottom: 30px;
+}
+
+.img {
+    border: solid 1px black;
+}
+
+.infoWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3px;
+}
+
+.brandName {
+    color: rgba(0, 0, 0, .5);
+}
+
+.ratingWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.block {
+    display: block;
+}
+
+.button {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 5px;
+    left: 75px;
+    position: relative;
+}

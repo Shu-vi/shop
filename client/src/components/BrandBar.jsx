@@ -1,23 +1,17 @@
 import React, {useContext} from 'react';
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
+import style from "../styles/components/brandBar.module.css";
 
 const BrandBar = observer(() => {
     const {device} = useContext(Context);
     return (
-        <div style={{display: 'flex', flexWrap: 'wrap'}}>
+        <div className={`${style.wrapper}`}>
             {
                 device.brands.map((brand) => {
-                    const notSelectedBrandStyles = {border: 'solid 1px #000', padding: '15px', cursor: 'pointer'};
-                    const selectedBrandStyles = {
-                        border: 'solid 1px #000',
-                        padding: '15px',
-                        backgroundColor: '#000',
-                        color: '#FFF',
-                        cursor: 'pointer'
-                    };
                     const isSelected = brand.id === device.selectedBrand.id;
-                    return <div key={brand.id} style={isSelected ? selectedBrandStyles : notSelectedBrandStyles}
+                    return <div key={brand.id}
+                                className={`${isSelected ? style.selectedBrand : style.notSelectedBrand}`}
                                 onClick={() => device.setSelectedBrand(brand)}>{brand.name}</div>
                 })
             }

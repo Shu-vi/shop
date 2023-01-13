@@ -1,0 +1,26 @@
+.wrapper {
+    width: 100%;
+    background-color: #252525;
+    color: #fff;
+    padding: 15px 20px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    text-transform: uppercase;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.button {
+    background-color: rgba(0, 0, 0, 0);
+    border: solid 1px #EEE;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 10px 5px;
+    color: #EEE;
+    cursor: pointer;
+    margin-right: 10px;
+}

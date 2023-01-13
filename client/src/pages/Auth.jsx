@@ -4,6 +4,7 @@ import {LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from "../utils/consts";
 import {login, registration} from "../http/UserApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
+import style from "../styles/pages/auth.module.css";
 
 const Auth = observer(() => {
     const {user} = useContext(Context);
@@ -30,44 +31,28 @@ const Auth = observer(() => {
         }
     }
     return (
-        <div style={{
-            height: window.innerHeight - 75,
-            display: 'flex', alignItems: 'center', justifyContent: 'center'
-        }}>
-            <div style={{border: '1px solid #888', width: '600px', padding: '50px'}}>
-                <h2 style={{
-                    fontSize: '28px',
-                    fontWeight: '600',
-                    letterSpacing: '2px',
-                    textAlign: 'center'
-                }}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
-                <form style={{display: 'flex', flexDirection: 'column'}}>
-                    <input placeholder={'Введите ваш email...'} style={{marginTop: '12px', padding: '8px'}}
+        <div className={`${style.wrapper}`}>
+            <div className={`${style.card}`}>
+                <h2 className={`${style.cardTitle}`}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
+                <form className={`${style.form}`}>
+                    <input placeholder={'Введите ваш email...'} className={`${style.input}`}
                            value={email}
                            onChange={e => setEmail(e.target.value)}/>
                     <input type={'password'} placeholder={'Введите ваш пароль...'}
-                           style={{marginTop: '12px', padding: '8px'}} value={password}
+                           className={`${style.input}`} value={password}
                            onChange={e => setPassword(e.target.value)}/>
-                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <div className={`${style.buttonWrapper}`}>
                         {isLogin ?
                             <div>
-                                Нет аккаунта? <NavLink to={REGISTRATION_ROUTE} style={{
-                                textDecoration: 'none',
-                                color: 'rgb(89, 120, 240)'
-                            }}>Зарегистрируйся!</NavLink>
+                                Нет аккаунта? <NavLink to={REGISTRATION_ROUTE}
+                                                       className={`${style.link}`}>Зарегистрируйся!</NavLink>
                             </div> :
                             <div>
-                                Уже есть аккаунт? <NavLink to={LOGIN_ROUTE} style={{
-                                textDecoration: 'none',
-                                color: 'rgb(89, 120, 240)'
-                            }}>Войдите!</NavLink>
+                                Уже есть аккаунт? <NavLink to={LOGIN_ROUTE}
+                                                           className={`${style.link}`}>Войдите!</NavLink>
                             </div>
                         }
-                        <button style={{
-                            padding: '10px', marginTop: '12px', backgroundColor: 'rgba(0, 0, 0, 0)',
-                            color: 'rgb(80, 150, 50)', fontSize: '15px', border: 'solid 2px rgb(80, 150, 50)',
-                            borderRadius: '5px', cursor: 'pointer',
-                        }}
+                        <button className={`${style.button}`}
                                 onClick={(e) => {
                                     e.preventDefault();
                                     click();

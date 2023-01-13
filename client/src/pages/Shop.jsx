@@ -6,6 +6,7 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import {fetchBrands, fetchDevices, fetchTypes} from "../http/DeviceApi";
 import Pages from "../components/Pages";
+import styles from '../styles/pages/shop.module.css';
 
 const Shop = observer(() => {
     const {device} = useContext(Context);
@@ -31,12 +32,12 @@ const Shop = observer(() => {
     }, [device.page, device.selectedType, device.selectedBrand])
 
     return (
-        <div style={{maxWidth: '1340px', padding: '0 15px', margin: '8px auto 0 auto'}}>
-            <div style={{display: 'flex', flexWrap: 'wrap', minWidth: '100%'}}>
-                <div style={{maxWidth: '25%', minWidth: '25%', padding: '0 15px'}}>
+        <div className={`${styles.wrapper}`}>
+            <div className={`${styles.content}`}>
+                <div className={`${styles.wrapperTypeBar}`}>
                     <TypeBar/>
                 </div>
-                <div style={{maxWidth: '75%', minWidth: '75%', padding: '0 15px'}}>
+                <div className={`${styles.wrapperContent}`}>
                     <BrandBar/>
                     <DeviceList/>
                     <Pages/>

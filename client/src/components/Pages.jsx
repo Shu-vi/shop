@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-
+import style from "../styles/components/component.module.css";
 const Pages = observer(() => {
     const {device} = useContext(Context);
     const pageCount = Math.ceil(device.totalCount / device.limit);
@@ -12,22 +12,14 @@ const Pages = observer(() => {
     }
 
     return (
-        <div style={{display: 'flex'}}>
+        <div className={`${style.flex}`}>
             {
                 pages.map((page) => {
-                    const activeStyles = {
-                        padding: '2px 7px',
-                        border: '1px solid black',
-                        cursor: 'pointer',
-                        color: '#FFF',
-                        backgroundColor: '#000'
-                    };
-                    const notActiveStyles = {padding: '2px 7px', border: '1px solid black', cursor: 'pointer'}
                     const isActive = device.page === page;
                     return (<div
                         onClick={() => device.setPage(page)}
                         key={page}
-                        style={isActive ? activeStyles : notActiveStyles}>{page}</div>)
+                        className={`${isActive ? style.activePage : style.page}`}>{page}</div>)
                 })
             }
         </div>

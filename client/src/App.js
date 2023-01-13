@@ -8,7 +8,7 @@ import {check} from "./http/UserApi";
 
 
 const App = observer(() => {
-    const {user, basket} = useContext(Context);
+    const {user} = useContext(Context);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

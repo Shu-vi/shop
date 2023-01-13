@@ -1,0 +1,17 @@
+.flex {
+    display: flex;
+}
+
+.page {
+    padding: 2px 7px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.activePage {
+    padding: 2px 7px;
+    border: 1px solid black;
+    cursor: pointer;
+    color: #FFF;
+    background-color: #000;
+}
