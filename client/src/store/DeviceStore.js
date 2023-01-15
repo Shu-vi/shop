@@ -1,4 +1,5 @@
 import {makeAutoObservable} from "mobx";
+import {PAGE_LIMIT} from "../utils/consts";
 
 export default class DeviceStore {
     constructor() {
@@ -9,7 +10,7 @@ export default class DeviceStore {
         this._selectedBrand = {}
         this._page = 1 //Текущая страница
         this._totalCount = 0 //всего таваров доступно по заданному фильтру
-        this._limit = 3 //количество товаров на одной странице
+        this._limit = PAGE_LIMIT //количество товаров на одной странице
         makeAutoObservable(this);
     }
 

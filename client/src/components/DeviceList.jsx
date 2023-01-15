@@ -8,8 +8,8 @@ const DeviceList = observer(() => {
     const {device} = useContext(Context);
     return (
         <div className={`${style.list}`}>
-            {device.devices.map((i) => {
-                return <DeviceItem key={i.id} device={i} brandList={device.brands}/>;
+            {device.devices.map((i, index) => {
+                return <DeviceItem isLast={index % 4 === 0} key={i.id} device={i} brandList={device.brands}/>;
             })}
         </div>
     );

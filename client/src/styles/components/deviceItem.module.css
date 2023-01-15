@@ -1,14 +1,22 @@
 .wrapper {
-    width: 170px;
+    width: 11.3vw;
+    height: 35vh;
     cursor: pointer;
     border: solid 1px black;
     padding: 10px;
-    margin-right: calc((100% - 4 * 170px) / 3);
     margin-bottom: 30px;
+    font-size: 2.5vh;
+}
+
+.isLast {
+    margin-right: 0;
 }
 
 .img {
     border: solid 1px black;
+    width: 100%;
+    height: 20vh;
+    margin: 0 auto;
 }
 
 .infoWrapper {

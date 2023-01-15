@@ -6,15 +6,31 @@ import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import {createBasket} from "../http/BasketApi";
 import style from '../styles/pages/devicePage.module.css';
+import StarList from "../components/StarList";
+import {fetchRateByDeviceId} from "../http/RateApi";
 
 const DevicePage = observer(() => {
     const [device, setDevice] = useState({info: []});
     const {id} = useParams();
-    const {user, basket} = useContext(Context);
+    const {user, basket, rate} = useContext(Context);
 
     useEffect(() => {
-        fetchOneDevice(id).then(data => setDevice(data));
+        fetchOneDevice(id)
+            .then(data => {
+                setDevice(data);
+                return fetchRateByDeviceId(data.id);
+            })
+            .then(data => {
+                rate.setRate(data);
+            });
     }, []);
+
+    useEffect(() => {
+        fetchOneDevice(id)
+            .then(data => {
+                setDevice(data);
+            })
+    }, [rate.rate])
 
     const addDeviceToBasket = () => {
         createBasket(user.user.id, id)
@@ -28,18 +44,20 @@ const DevicePage = observer(() => {
                      src={process.env.REACT_APP_API_URL + device.img}/>
                 <div className={`${style.flex} ${style.deviceRatingWrapper}`}>
                     <h2 className={`${style.deviceName}`}>{device.name}</h2>
-                    <div className={`${style.deviceRating} ${style.flex}`} style={{background: `url(${bigStar}) no-repeat center center`}}>
+                    <div className={`${style.deviceRating} ${style.flex}`}
+                         style={{background: `url(${bigStar}) no-repeat center center`}}>
                         {device.rating}
                     </div>
                 </div>
                 <div className={`${style.flex} ${style.basketWrapper}`}>
-                    <h3 className={`${style.fw}`}>От: {device.price} руб.</h3>
+                    <h3 className={`${style.fw}`}>От: {device.price!== undefined ? device.price.toLocaleString('ru-RU') : null} руб.</h3>
                     <button className={`${style.basketButton}`}
                             onClick={addDeviceToBasket}
                     >Добавить в корзину
                     </button>
                 </div>
             </div>
+            <StarList device={device}/>
             <div className={`${style.infoWrapper}`}>
                 <h2 className={`${style.title}`}>Характеристики:</h2>
                 {device.info.map((info, index) => {

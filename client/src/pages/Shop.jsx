@@ -7,6 +7,7 @@ import {Context} from "../index";
 import {fetchBrands, fetchDevices, fetchTypes} from "../http/DeviceApi";
 import Pages from "../components/Pages";
 import styles from '../styles/pages/shop.module.css';
+import {PAGE_LIMIT} from "../utils/consts";
 
 const Shop = observer(() => {
     const {device} = useContext(Context);
@@ -16,7 +17,7 @@ const Shop = observer(() => {
             .then(data => device.setTypes(data))
         fetchBrands()
             .then(data => device.setBrands(data))
-        fetchDevices(null, null, 1, 3).then(data => {
+        fetchDevices(null, null, 1, PAGE_LIMIT).then(data => {
             device.setDevices(data.rows)
             device.setTotalCount(data.count)
         })
@@ -25,7 +26,7 @@ const Shop = observer(() => {
 
 
     useEffect(() => {
-        fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 3).then(data => {
+        fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, PAGE_LIMIT).then(data => {
             device.setDevices(data.rows)
             device.setTotalCount(data.count)
         })

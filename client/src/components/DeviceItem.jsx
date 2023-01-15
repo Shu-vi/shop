@@ -4,11 +4,11 @@ import {useNavigate} from "react-router-dom";
 import {DEVICE_ROUTE} from "../utils/consts";
 import style from "../styles/components/deviceItem.module.css";
 
-const DeviceItem = ({replace, replaceFunction, device, brandList, ...props}) => {
+const DeviceItem = ({isLast, replace, replaceFunction, device, brandList, ...props}) => {
     const navigate = useNavigate();
     return (
-        <div onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)} className={`${style.wrapper}`}>
-            <img alt="Изображение устройства" width={150} height={150} src={process.env.REACT_APP_API_URL + device.img}
+        <div onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)} className={`${style.wrapper} `}>
+            <img alt="Изображение устройства" src={process.env.REACT_APP_API_URL + device.img}
                  className={`${style.img}`}/>
             <div className={`${style.infoWrapper}`}>
                 <div className={`${style.brandName}`}>{brandList.map((brand) => {
@@ -23,7 +23,8 @@ const DeviceItem = ({replace, replaceFunction, device, brandList, ...props}) => 
                 </div>
             </div>
             <div>{device.name}</div>
-            <span className={`${style.block}`}>{device.price} руб.</span>
+            <span
+                className={`${style.block}`}>{device.price !== undefined ? device.price.toLocaleString('ru-RU') : null} руб.</span>
             {
                 replace
                     ?

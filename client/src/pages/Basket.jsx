@@ -53,7 +53,7 @@ const Basket = observer(() => {
             })}
             {
                 basket.basketContent.length > 0 ?
-                    <span className={`${style.text}`}>Итого: {totalPrice()} руб.</span>
+                    <span className={`${style.text}`}>Итого: {totalPrice().toLocaleString('ru-RU')} руб.</span>
                     :
                     <span className={`${style.text}`}>Корзина пуста</span>
             }

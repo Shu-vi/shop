@@ -4,6 +4,7 @@ import App from './App';
 import UserStore from "./store/UserStore";
 import DeviceStore from "./store/DeviceStore";
 import BasketStore from "./store/BasketStore";
+import RateStore from "./store/RateStore";
 
 export const Context = createContext(null);
 
@@ -13,7 +14,8 @@ root.render(
         <Context.Provider value={{
             user: new UserStore(),
             device: new DeviceStore(),
-            basket: new BasketStore()
+            basket: new BasketStore(),
+            rate: new RateStore()
         }}>
             <App/>
         </Context.Provider>
