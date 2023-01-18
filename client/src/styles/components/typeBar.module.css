@@ -2,20 +2,21 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 110px;
 }
 
-.type {
-    border: 1px solid black;
-    cursor: pointer;
-    padding: 15px;
+.type{
     text-align: center;
+    vertical-align: middle;
+    line-height: 7vh;
+    cursor: pointer;
+    border: 1px solid black;
+    height: 100%;
+    padding: 2vh 2vw;
+    font-size: 0.9em;
 }
 
 .activeType {
-    border: 1px solid black;
-    cursor: pointer;
-    padding: 15px;
-    text-align: center;
     color: #FFF;
     background-color: #000;
 }

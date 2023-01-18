@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useMemo} from 'react';
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import {deleteBasket} from "../http/BasketApi";
@@ -21,6 +21,12 @@ const Basket = observer(() => {
 
     }, []);
 
+    const getDeviceById = (id) => {
+        const devices = device.devices;
+        const foundDevice = devices.filter(d => d.id === id);
+        return foundDevice[0];
+    };
+
     const totalPrice = () => {
         let total = 0;
         basket.basketContent.forEach((i) => {
@@ -38,17 +44,13 @@ const Basket = observer(() => {
                 });
         }
     };
-    const getDeviceById = (id) => {
-        const devices = device.devices;
-        const foundDevice = devices.filter(d => d.id === id);
-        return foundDevice[0];
-    }
+
     return (
         <div className={style.wrapper}>
             <span className={`${style.text}`}>Корзина:</span>
             {basket.basketContent.map((i) => {
                 const d = getDeviceById(i.deviceId);
-                return <DeviceItem replaceFunction={deleteDevice(i.id)} replace={true} key={i.id} device={d}
+                return <DeviceItem onDelete={deleteDevice(i.id)} replace={true} key={i.id} device={d}
                                    brandList={device.brands}/>;
             })}
             {

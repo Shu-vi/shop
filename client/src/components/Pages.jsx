@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import style from "../styles/components/component.module.css";
+import style from "../styles/components/pages.module.css";
 const Pages = observer(() => {
     const {device} = useContext(Context);
     const pageCount = Math.ceil(device.totalCount / device.limit);
@@ -19,7 +19,7 @@ const Pages = observer(() => {
                     return (<div
                         onClick={() => device.setPage(page)}
                         key={page}
-                        className={`${isActive ? style.activePage : style.page}`}>{page}</div>)
+                        className={`${isActive ? style.activePage : null} ${style.page}`}>{page}</div>)
                 })
             }
         </div>

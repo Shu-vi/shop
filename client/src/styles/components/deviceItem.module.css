@@ -1,15 +1,28 @@
-.wrapper {
-    width: 11.3vw;
-    height: 35vh;
-    cursor: pointer;
-    border: solid 1px black;
-    padding: 10px;
-    margin-bottom: 30px;
-    font-size: 2.5vh;
+@media screen and (min-width: 320px) {
+    .wrapper {
+        width: 50vw;
+        height: 50vh;
+    }
 }
 
-.isLast {
-    margin-right: 0;
+@media screen and (min-width: 576px) {
+    .wrapper {
+        width: 13vw;
+        height: 37vh;
+    }
+}
+
+.wrapper {
+    min-width: 200px;
+    min-height: 150px;
+    cursor: pointer;
+    border: solid 1px black;
+    padding: 0.5em;
+    margin-bottom: 0.8em;
+    margin-right: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .img {
@@ -23,20 +36,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 3px;
 }
 
 .brandName {
     color: rgba(0, 0, 0, .5);
+    font-size: 1.2em;
 }
 
 .ratingWrapper {
     display: flex;
     align-items: center;
+    font-size: 1.1em;
+}
+
+.deviceName{
+    font-size: 1.02em;
 }
 
 .block {
     display: block;
+}
+
+.price{
+    font-size: 1em;
 }
 
 .button {

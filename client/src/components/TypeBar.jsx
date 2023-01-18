@@ -11,9 +11,13 @@ const TypeBar = observer(({children, ...props}) => {
                 device.types.map((type) => {
                     const isSelected = type.id === device.selectedType.id;
                     return (
-                        <div key={type.name} className={`${isSelected ? style.activeType : style.type}`}
+                        <div key={type.name} className={`${isSelected ? style.activeType : null} ${style.type}`}
                              onClick={() => {
-                                 device.setSelectedType(type)
+                                 if (isSelected) {
+                                     device.setSelectedType({});
+                                 } else {
+                                     device.setSelectedType(type);
+                                 }
                              }}>
                             {type.name}
                         </div>)

@@ -42,10 +42,6 @@
     margin-bottom: 10px;
 }
 
-.hr {
-    width: 100%;
-    margin-bottom: 10px;
-}
 
 .button {
     padding: 10px;
@@ -102,4 +98,78 @@
     border-radius: 5px;
     cursor: pointer;
     margin-right: 12px;
+}
+
+/*TODO потом переделать*/
+
+.infoWrapper {
+    margin-top: 20px;
+}
+
+.infoTitle {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.infoRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.removeInfo {
+    color: #ff0000;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.addInfo {
+    color: #3498db;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.removeInfo:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.addInfo:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.fileName {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fileInputWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    height: 40px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.fileInputWrapper:hover {
+    background-color: #f9f9f9;
+    border-color: #3498db;
+}
+
+.fileInput {
+    display: none;
 }
