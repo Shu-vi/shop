@@ -3,7 +3,6 @@ import star from '../assets/star.png';
 import {useNavigate} from "react-router-dom";
 import {DEVICE_ROUTE} from "../utils/consts";
 import style from "../styles/components/deviceItem.module.css";
-import PropTypes from 'prop-types';
 
 const DeviceItem = ({replace, device, brandList, onDelete}) => {
     const navigate = useNavigate();
@@ -37,29 +36,6 @@ const DeviceItem = ({replace, device, brandList, onDelete}) => {
             {replace && <button className={`${style.button}`} onClick={handleDelete}>Удалить</button>}
         </div>
     );
-};
-
-DeviceItem.propTypes = {
-    replace: PropTypes.bool,
-    device: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        brandId: PropTypes.number.isRequired,
-        img: PropTypes.string.isRequired,
-        rating: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        price: PropTypes.number,
-    }).isRequired,
-    brandList: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired
-    })).isRequired,
-    onDelete: PropTypes.func
-};
-
-DeviceItem.defaultProps = {
-    replace: false,
-    onDelete: () => {
-    }
 };
 
 export default DeviceItem;

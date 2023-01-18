@@ -12,14 +12,17 @@ const NavBar = observer(() => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchBasket(user.user.id)
-            .then(data => basket.setBasketContent(data));
-    }, []);
+        if (user.isAuth) {
+            fetchBasket(user.user.id)
+                .then((data) => basket.setBasketContent(data));
+        }
+    }, [user.isAuth, user.user.id, basket]);
 
     const logOut = () => {
         localStorage.removeItem('token');
         user.setUser({});
         user.setIsAuth(false);
+        navigate(SHOP_ROUTE);
     }
 
     return (
@@ -43,7 +46,7 @@ const NavBar = observer(() => {
                             <button
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    navigate(BASKET_ROUTE, {replace: true})
+                                    navigate(BASKET_ROUTE, {replace: true});
                                 }}
                                 className={`${style.button} ${isClickedBurger && style.mobileButton}`}>Корзина {basket.basketContent.length}
                             </button>
